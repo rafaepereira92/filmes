@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"> <!-- Quero pegar o alfabeto completo, incluindo os acentos -->
+    <meta name="viewport" content="width-device-width, initial-scale=1.0"> <!-- Transformando em display apenas para PC -->
+    <title>Login</title> <!-- Nome da Aba -->
+    <link rel="stylesheet" href="style.css"> <!-- Importando o meu css -->
+</head>
+<body>
+
+    <header id="top-bar"> <!-- Fazendo o mesmo estilo igual o filmesselecao.html -->
+        <div class="top-bar-left">
+            <h1>Filmes IMDB</h1> <!-- Ele fica na esquerda -->
+        </div>
+        <br>
+        <form id="loginForm"> <!-- Tem que puxar variável de Js, se puxar com html misturado, dá bug--> <!-- Esse form é tipo um formulário que você escreve as coisas e ele salva em algo, nesse caso ele vai ser salvo em uma variável -->
+            <label for="username">Usuário:</label> <!-- ABA DO USUÁRIO PARA ESCREVER -->
+            <input type="text" id="username" name="username" required /><br> <!-- Precisa escrever apenas texto e não pode deixar em branco -->
+            <label for="password">Senha: </label>  <!-- Quando o usuário escrever a senha, ele vai ser salvo na variável password-->
+            <input type="password" id="password" name="password" required /><br> <!-- Obrigatório escrever algo -->
+            <button type="submit">Entrar</button> <!-- Botão para entrar(criar) o usuário, ai aparece o submit dizendo que ele apertou o botão e que vai ser redirecionado a outro site se foi apertado o submit-->
+
+        </form>
+    </header>
+
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function(event){ // Evento de uma máquina virtual que vai rodar um script
+          event.preventDefault();
+
+          const usuario = document.getElementById('username').value; // Aqui pego a informação do usuário que foi digitada depois de enviar
+          const senha = document.getElementById('password').value; // Aqui a mesma coisa, só que com senha
+
+          // Simulação de verificação (pode ser ajustada depois)
+
+          // Verifica se os campos não estão vazios
+          if (usuario.trim() !== '' && senha.trim() !== '') {
+              // Salva os dados no LocalStorage ( Armazenamento )
+              localStorage.setItem('usuarioLogado', 'true');
+              localStorage.setItem('nomeUsuario', usuario);
+
+              // Redireciona para a página de filmes
+              window.location.href = 'filmesselecao.html';
+
+          }
+          else {
+             alert('Usuário ou senha inválidos!'); // Ele aparece como um texto em cima lá no navegador avisando o erro
+          }
+
+
+          // Aqui você poderia validar usuário/senha via backend (ou só para demo )
+          // Vamos supor que Login seja sempre aceito
+
+          // Salva no Armazenamento que está logado
+          localStorage.setItem('usuarioLogado', 'true')
+
+          // Redireciona para a página de filmes
+          window.location.href = 'emuladoresselecao.html'
+
+      })
+
+    </script>
+
+</body>
+</html>
